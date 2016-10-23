@@ -43,9 +43,10 @@ for (i in 1:R) {
 mean(bootmean)
 
 # Plot histogram #
-hist(bootmean, breaks=20, col="red", main="Normal Distribution (n=10)")
-abline(v=0, col="blue", lwd=2)
+h <- hist(bootmean, breaks=20)
+plot(h, col="red", main="Normal Distribution (n=10)")
 ```
+
 
 ##### Bootstrap with sample size of 500
 
@@ -64,8 +65,8 @@ for (i in 1:R) {
 mean(bootmean)
 
 # Plot histogram #
-hist(bootmean, breaks=20, col="red", main="Normal Distribution (n=250)")
-abline(v=0, col="blue", lwd=2)
+h <- hist(bootmean, breaks=20)
+plot(h, col="red", main="Normal Distribution (n=250)")
 ```
 
 #### Exponential Distribution
@@ -94,8 +95,8 @@ for (i in 1:R) {
 mean(bootmean)
 
 # Plot histogram #
-hist(bootmean, breaks=20, col="red", main="Exponential Distribution (n=10)")
-abline(v=1, col="blue", lwd=2)
+h <- hist(bootmean, breaks=20)
+plot(h, col="red", main="Exponential Distribution (n=10)")
 ```
 
 ##### Bootstrap with sample size of 250
@@ -115,8 +116,8 @@ for (i in 1:R) {
 mean(bootmean)
 
 # Plot histogram #
-hist(bootmean, breaks=20, col="red", main="Exponential Distribution (n=250)")
-abline(v=1, col="blue", lwd=2)
+h <- hist(bootmean, breaks=20)
+plot(h, col="red", main="Exponential Distribution (n=250)")
 ```
 
 
