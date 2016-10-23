@@ -1,0 +1,125 @@
+---
+title: "Homework4"
+author: "James Logan Gage"
+date: "October 23, 2016"
+output: 
+  html_document:
+  keep_md: true
+---
+
+# MSDS 6306 Doing Data Science: Homework 4
+
+###### Directions: Write bootstrap code to illustrate the central limit theorem in R markdown and push the result to GitHub. Use a normal distribution with two different sample sizes and an exponential distribution with two different sample sizes. Correct code alone is insufficient. Please also comment on the code and explain the results. For help, see the lotsa.medians function in Unit 4. The deliverable is a link to a GitHub repo containing the code.
+
+###### The Central Limit Theorem:  the sampling distribution of the mean of any independent, random variable will be normal or nearly normal, if the sample size is large enough.
+
+###### Bootstrap:  a nonparametric method that resamples a given data set a specified number of times, calculates a specific statistic from each sample, and 
+
+***
+
+#### Normal Distribution
+
+```{r}
+# Create the normal distribution #
+n <- 10
+x <- rnorm(n)
+x
+```
+
+##### Bootstrap with sample size of 10
+
+```{r}
+# Variables #
+R <- 10
+bootmean <- numeric(R)
+
+# Simulate the data by created a loop of R cycles of the orginal distribution #
+for (i in 1:R) {
+  bootsample <- sample(x, size=length(x), replace=TRUE)
+  bootmean[i] <- mean(bootsample)
+}
+
+# Calculate the mean #
+mean(bootmean)
+
+# Plot histogram #
+hist(bootmean, breaks=20, col="red", main="Normal Distribution (n=10)")
+abline(v=0, col="blue", lwd=2)
+```
+
+##### Bootstrap with sample size of 500
+
+```{r}
+# Variables #
+R <- 500
+bootmean <- numeric(R)
+
+# Simulate the data #
+for (i in 1:R) {
+  bootsample <- sample(x, size=length(x), replace=TRUE)
+  bootmean[i] <- mean(bootsample)
+}
+
+# Calculate the mean #
+mean(bootmean)
+
+# Plot histogram #
+hist(bootmean, breaks=20, col="red", main="Normal Distribution (n=250)")
+abline(v=0, col="blue", lwd=2)
+```
+
+#### Exponential Distribution
+
+```{r}
+# Create the exponential distribution #
+n <- 10
+y <- rexp(n)
+y
+```
+
+##### Bootstrap with sample size of 10
+
+```{r}
+# Variables #
+R <- 10
+bootmean <- numeric(R)
+
+# Simulate the data #
+for (i in 1:R) {
+  bootsample <- sample(y, size=length(y), replace=TRUE)
+  bootmean[i] <- mean(bootsample)
+}
+
+# Calculate the mean #
+mean(bootmean)
+
+# Plot histogram #
+hist(bootmean, breaks=20, col="red", main="Exponential Distribution (n=10)")
+abline(v=1, col="blue", lwd=2)
+```
+
+##### Bootstrap with sample size of 250
+
+```{r}
+# Variables #
+R <- 250
+bootmean <- numeric(R)
+
+# Simulate the data #
+for (i in 1:R) {
+  bootsample <- sample(y, size=length(y), replace=TRUE)
+  bootmean[i] <- mean(bootsample)
+}
+
+# Calculate the mean #
+mean(bootmean)
+
+# Plot histogram #
+hist(bootmean, breaks=20, col="red", main="Exponential Distribution (n=250)")
+abline(v=1, col="blue", lwd=2)
+```
+
+
+#### Conclusion
+
+###### The Central Limit Theorem states that if the sample size is large enough the sampling distribution of the mean for a population will approach normality.  In this bootstrap example, as sample size increases the distribution approaches normality for normal and exponential types. 
